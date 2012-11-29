@@ -1,5 +1,5 @@
 # TODO
-# - includes bundled SWFObject v2.2 and SWFUpload
+# - bundles SWFObject v2.2 and SWFUpload
 # NOTE
 # - the HTML5 version, is not available as Flash version
 %define		plugin	uploadify
@@ -7,7 +7,7 @@
 Summary:	Flash Multiple File Upload jQuery Plugin Script
 Name:		jquery-%{plugin}
 Version:	3.1.1
-Release:	0.8
+Release:	0.10
 License:	MIT
 Group:		Applications/WWW
 Source0:	http://www.uploadify.com/wp-content/uploads/files/uploadify-v%{basever}.zip
@@ -19,6 +19,7 @@ BuildRequires:	rpmbuild(macros) >= 1.553
 BuildRequires:	unzip
 BuildRequires:	yuicompressor
 Requires:	jquery >= 1.6
+Requires:	js-swfobject >= 2.2
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -37,6 +38,12 @@ mv "Change Log.txt" "ChangeLog.txt"
 
 install -d examples
 mv .htaccess *.php examples
+
+# keep original for reference
+cp -p jquery.uploadify-%{basever}.js{,.bak}
+
+# unmodified swfupload 2.2
+%{__sed} -i -e 1,59d jquery.uploadify-%{basever}.js
 
 %build
 install -d build
