@@ -1,5 +1,5 @@
 # TODO
-# - bundles SWFObject v2.2 and SWFUpload
+# - bundles SWFObject v2.2 and SWFUpload 2.2.0.1
 # NOTE
 # - the HTML5 version, is not available as Flash version
 %define		plugin	uploadify
@@ -45,10 +45,10 @@ mv .htaccess *.php examples
 # keep original for reference
 cp -p jquery.uploadify-%{basever}.js{,.bak}
 
-# unmodified swfupload 2.2
+# unmodified SWFObject 2.2
 %{__sed} -i -e 1,59d jquery.uploadify-%{basever}.js
 
-# unmmodified 2.2.0.1
+# unmmodified SWFUpload 2.2.0.1
 %{__sed} -i -e 1,14d jquery.uploadify-%{basever}.js
 
 %build
