@@ -1,6 +1,5 @@
 # TODO
 # - includes bundled SWFObject v2.2 and SWFUpload
-# - fix img path in .css file, pack css
 # NOTE
 # - the HTML5 version, is not available as Flash version
 %define		plugin	uploadify
@@ -8,11 +7,12 @@
 Summary:	Flash Multiple File Upload jQuery Plugin Script
 Name:		jquery-%{plugin}
 Version:	3.1.1
-Release:	0.2
+Release:	0.3
 License:	MIT
 Group:		Applications/WWW
 Source0:	http://www.uploadify.com/wp-content/uploads/files/uploadify-v%{basever}.zip
 # Source0-md5:	630e0445508c9614a8d37781068073cd
+Patch0:		css-path.patch
 URL:		http://www.uploadify.com/
 BuildRequires:	rpmbuild(macros) >= 1.553
 BuildRequires:	unzip
@@ -27,10 +27,10 @@ jQuery Multiple File Upload Plugin - Uploadify.
 
 %prep
 %setup -qc
+%undos -f php,txt,css
+%patch0 -p1
 
 mv "Change Log.txt" "ChangeLog.txt"
-
-%undos -f php,txt
 
 install -d examples
 mv .htaccess *.php examples
