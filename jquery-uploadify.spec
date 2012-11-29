@@ -7,16 +7,17 @@
 Summary:	Flash Multiple File Upload jQuery Plugin Script
 Name:		jquery-%{plugin}
 Version:	3.1.1
-Release:	0.6
+Release:	0.7
 License:	MIT
 Group:		Applications/WWW
 Source0:	http://www.uploadify.com/wp-content/uploads/files/uploadify-v%{basever}.zip
 # Source0-md5:	630e0445508c9614a8d37781068073cd
 Patch0:		css-path.patch
+Patch1:		jquery-ns.patch
 URL:		http://www.uploadify.com/
-BuildRequires:	yuicompressor
 BuildRequires:	rpmbuild(macros) >= 1.553
 BuildRequires:	unzip
+BuildRequires:	yuicompressor
 Requires:	jquery >= 1.6
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -28,8 +29,9 @@ jQuery Multiple File Upload Plugin - Uploadify.
 
 %prep
 %setup -qc
-%undos -f php,txt,css
+%undos -f php,txt,css,js
 %patch0 -p1
+%patch1 -p1
 
 mv "Change Log.txt" "ChangeLog.txt"
 

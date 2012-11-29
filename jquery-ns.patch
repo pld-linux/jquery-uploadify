@@ -1,0 +1,9 @@
+--- jquery-uploadify-3.1/jquery.uploadify-3.1.js~	2012-05-22 02:07:00.000000000 +0300
++++ jquery-uploadify-3.1/jquery.uploadify-3.1.js	2012-11-29 19:30:53.404491175 +0200
+@@ -964,4 +964,4 @@
+ 
+ 	}
+ 
+-})($);
+\ No newline at end of file
++})(jQuery);
