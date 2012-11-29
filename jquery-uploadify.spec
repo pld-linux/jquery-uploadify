@@ -7,7 +7,7 @@
 Summary:	Flash Multiple File Upload jQuery Plugin Script
 Name:		jquery-%{plugin}
 Version:	3.1.1
-Release:	0.7
+Release:	0.8
 License:	MIT
 Group:		Applications/WWW
 Source0:	http://www.uploadify.com/wp-content/uploads/files/uploadify-v%{basever}.zip
