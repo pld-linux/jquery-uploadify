@@ -7,13 +7,14 @@
 Summary:	Flash Multiple File Upload jQuery Plugin Script
 Name:		jquery-%{plugin}
 Version:	3.1.1
-Release:	0.3
+Release:	0.6
 License:	MIT
 Group:		Applications/WWW
 Source0:	http://www.uploadify.com/wp-content/uploads/files/uploadify-v%{basever}.zip
 # Source0-md5:	630e0445508c9614a8d37781068073cd
 Patch0:		css-path.patch
 URL:		http://www.uploadify.com/
+BuildRequires:	yuicompressor
 BuildRequires:	rpmbuild(macros) >= 1.553
 BuildRequires:	unzip
 Requires:	jquery >= 1.6
@@ -35,6 +36,19 @@ mv "Change Log.txt" "ChangeLog.txt"
 install -d examples
 mv .htaccess *.php examples
 
+%build
+install -d build
+
+# pack .css
+for css in *.css; do
+	out=build/${css#*/}
+%if 0%{!?debug:1}
+	yuicompressor --charset UTF-8 $css -o $out
+%else
+	cp -p $css $out
+%endif
+done
+
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_appdir},%{_examplesdir}/%{name}-%{version}}
@@ -43,8 +57,13 @@ cp -p jquery.%{plugin}-%{basever}.min.js $RPM_BUILD_ROOT%{_appdir}/%{plugin}-%{v
 cp -p jquery.%{plugin}-%{basever}.js $RPM_BUILD_ROOT%{_appdir}/%{plugin}-%{version}.js
 ln -s %{plugin}-%{version}.js $RPM_BUILD_ROOT%{_appdir}/%{plugin}.src.js
 ln -s %{plugin}-%{version}.min.js $RPM_BUILD_ROOT%{_appdir}/%{plugin}.js
+
+cp -p %{plugin}.css $RPM_BUILD_ROOT%{_appdir}/%{plugin}-%{version}.css
+cp -p build/%{plugin}.css $RPM_BUILD_ROOT%{_appdir}/%{plugin}-%{version}.min.css
+ln -s %{plugin}-%{version}.css $RPM_BUILD_ROOT%{_appdir}/%{plugin}.src.css
+ln -s %{plugin}-%{version}.min.css $RPM_BUILD_ROOT%{_appdir}/%{plugin}.css
+
 cp -p *.png *.swf $RPM_BUILD_ROOT%{_appdir}
-cp -p *.css $RPM_BUILD_ROOT%{_appdir}
 
 cp -a examples/{.*,*} $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
