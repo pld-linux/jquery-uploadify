@@ -16,6 +16,7 @@ Source0:	http://www.uploadify.com/wp-content/uploads/files/uploadify.zip
 Patch0:		css-path.patch
 Patch1:		jquery-ns.patch
 Patch2:		var-leaks.patch
+Patch3:		units.patch
 URL:		http://www.uploadify.com/
 BuildRequires:	closure-compiler
 BuildRequires:	js
@@ -36,14 +37,6 @@ jQuery Multiple File Upload Plugin - Uploadify.
 %prep
 %setup -qc
 %undos -f php,txt,css,js
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-
-mv "Change Log.txt" "ChangeLog.txt"
-
-install -d examples
-mv *.php examples
 
 # keep original for reference
 cp -p jquery.uploadify.js{,.bak}
@@ -53,6 +46,16 @@ cp -p jquery.uploadify.js{,.bak}
 
 # unmmodified SWFUpload 2.2.0.1
 %{__sed} -i -e 1,14d jquery.uploadify.js
+
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+
+mv "Change Log.txt" "ChangeLog.txt"
+
+install -d examples
+mv *.php examples
 
 %build
 # version check

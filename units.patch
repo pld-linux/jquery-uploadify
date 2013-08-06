@@ -1,0 +1,39 @@
+--- jquery-uploadify-3.2.1/jquery.uploadify.js	2013-08-06 14:18:16.302874877 +0300
++++ jquery-uploadify-3.2.1/jquery.uploadify.js	2013-08-06 14:16:55.990812689 +0300
+@@ -554,10 +554,10 @@
+ 
+ 			// Get the size of the file
+ 			var fileSize = Math.round(file.size / 1024);
+-			var suffix   = 'KB';
+-			if (fileSize > 1000) {
+-				fileSize = Math.round(fileSize / 1000);
+-				suffix   = 'MB';
++			var suffix   = 'KiB';
++			if (fileSize > 1024) {
++				fileSize = Math.round(fileSize / 1024);
++				suffix   = 'MiB';
+ 			}
+ 			var fileSizeParts = fileSize.toString().split('.');
+ 			fileSize = fileSizeParts[0];
+@@ -810,7 +810,7 @@
+ 			var percentage       = Math.round(fileBytesLoaded / fileTotalBytes * 100);
+ 			
+ 			// Calculate the average speed
+-			var suffix = 'KB/s';
++			var suffix = 'KiB/s';
+ 			var mbs = 0;
+ 			var kbs = (lapsedBytes / 1024) / (lapsedTime / 1000);
+ 			    kbs = Math.floor(kbs * 10) / 10;
+@@ -819,10 +819,10 @@
+ 			} else {
+ 				this.queueData.averageSpeed = Math.floor(kbs);
+ 			}
+-			if (kbs > 1000) {
++			if (kbs > 1024) {
+ 				mbs = (kbs * .001);
+ 				this.queueData.averageSpeed = Math.floor(mbs);
+-				suffix = 'MB/s';
++				suffix = 'MiB/s';
+ 			}
+ 			
+ 			// Call the default event handler
