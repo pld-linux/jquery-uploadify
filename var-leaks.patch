@@ -1,0 +1,20 @@
+--- jquery-uploadify-3.2.1/jquery.uploadify.js	2013-08-06 13:12:42.705172866 +0300
++++ jquery-uploadify-3.2.1/jquery.uploadify.js	2013-08-06 13:11:35.769576017 +0300
+@@ -573,7 +573,7 @@
+ 			}
+ 
+ 			// Create the file data object
+-			itemData = {
++			var itemData = {
+ 				'fileID'     : file.id,
+ 				'instanceID' : settings.id,
+ 				'fileName'   : fileName,
+@@ -597,7 +597,7 @@
+ 			if ($.inArray('onSelect', settings.overrideEvents) < 0) {
+ 				
+ 				// Replace the item data in the template
+-				itemHTML = settings.itemTemplate;
++				var itemHTML = settings.itemTemplate;
+ 				for (var d in itemData) {
+ 					itemHTML = itemHTML.replace(new RegExp('\\$\\{' + d + '\\}', 'g'), itemData[d]);
+ 				}
