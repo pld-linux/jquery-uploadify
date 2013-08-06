@@ -1,15 +1,15 @@
---- jquery-uploadify-3.1/jquery.uploadify-3.1.js~	2012-05-22 02:07:00.000000000 +0300
-+++ jquery-uploadify-3.1/jquery.uploadify-3.1.js	2012-11-29 19:30:53.404491175 +0200
-@@ -650,7 +650,7 @@
- 				// Add the file item to the queue
- 				$('#' + settings.queueID).append('<div id="' + file.id + '" class="uploadify-queue-item">\
+--- jquery-uploadify-3.2.1/jquery.uploadify.js~	2013-08-06 13:02:03.578771849 +0300
++++ jquery-uploadify-3.2.1/jquery.uploadify.js	2013-08-06 13:06:41.567624860 +0300
+@@ -584,7 +584,7 @@
+ 			if (settings.itemTemplate == false) {
+ 				settings.itemTemplate = '<div id="${fileID}" class="uploadify-queue-item">\
  					<div class="cancel">\
--						<a href="javascript:$(\'#' + settings.id + '\').uploadify(\'cancel\', \'' + file.id + '\')">X</a>\
-+						<a href="javascript:jQuery(\'#' + settings.id + '\').uploadify(\'cancel\', \'' + file.id + '\')">X</a>\
+-						<a href="javascript:$(\'#${instanceID}\').uploadify(\'cancel\', \'${fileID}\')">X</a>\
++						<a href="javascript:jQuery(\'#${instanceID}\').uploadify(\'cancel\', \'${fileID}\')">X</a>\
  					</div>\
- 					<span class="fileName">' + fileName + ' (' + fileSize + ')</span><span class="data"></span>\
+ 					<span class="fileName">${fileName} (${fileSize})</span><span class="data"></span>\
  					<div class="uploadify-progress">\
-@@ -964,4 +964,4 @@
+@@ -910,4 +910,4 @@
  
  	}
  
